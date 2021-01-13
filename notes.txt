@@ -4,3 +4,8 @@ sudo docker-compose up
 sudo docker-compose up -d <service_name> # detached--in the background
 
 sudo docker-compose run --rm --service-ports ruby_dev
+
+
+sudo docker container ls
+
+docker exec -it <CONTAINER ID> bash
