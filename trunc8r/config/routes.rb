@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'static_pages#index'
+
   get '/:slug', to: 'redirects#redirect'
 
   resources :links, only: :create
