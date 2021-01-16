@@ -36,7 +36,7 @@ RSpec.describe 'Links', type: :request do
 
       expect(response).to have_http_status(400)
       expect(response.content_type).to include('application/json')
-      expect(JSON.parse(response.body)['errors']).to include('Url must be a valid url (must start with http(s)://)')
+      expect(JSON.parse(response.body)['errors']).to include('Url must be a valid url ( must start with http(s):// )')
     end
   end
 end

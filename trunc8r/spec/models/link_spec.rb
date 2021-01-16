@@ -9,7 +9,7 @@ RSpec.describe Link, type: :model do
     end
 
     it 'only allow urls that start with http:// or https://' do
-      error_message = ['must be a valid url (must start with http(s)://)']
+      error_message = ['must be a valid url ( must start with http(s):// )']
       link = Link.new(url: 'google.com')
       expect(link.valid?).to be false
       expect(link.errors.messages[:url]).to eq error_message

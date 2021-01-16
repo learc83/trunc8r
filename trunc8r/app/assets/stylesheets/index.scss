@@ -14,11 +14,15 @@ body {
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
 }
 
 .content {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
@@ -26,7 +30,7 @@ body {
 }
 
 .header {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   align-self: start;
   display: flex;
   &__image {
@@ -38,7 +42,7 @@ body {
 .sales_pitch {
   flex: 1 1 auto;
   margin-top: 64px;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -77,6 +81,45 @@ body {
 .link_shortener {
   flex: 1 1 100px;
   display: flex;
+  flex-direction: column;
+
+  &__response {
+    font-size: 150%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__response--error {
+    color: #fb5d64;
+  }
+
+  &__prompt {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  &__short_url {
+    font-size: 120%;
+    margin: 0 8px;
+  }
+
+  &__copy_button {
+    font-size: 75%;
+    font-weight: 600;
+    border: none;
+    padding: 4px 6px;
+    // margin: 0;
+    // font-size: 150%;
+    background-color: #d7e0ff;
+    color: #1b3c87;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__copy_button:focus,
+  &__copy_button:active {
+    outline: none;
+    box-shadow: none;
+  }
 
   &__form {
     flex: 1 1 100%;
@@ -96,7 +139,7 @@ body {
   }
 
   &__input::placeholder {
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.25);
   }
 
   &__button {
@@ -105,7 +148,6 @@ body {
     padding: 12px;
     margin: 0;
     font-size: 150%;
-    background-color: rgb(75, 158, 59);
     background-color: #46dbc9;
     color: #fff;
     border-radius: 4px;
@@ -121,6 +163,8 @@ body {
   }
 
   @media (max-width: 480px) {
+    flex-direction: column-reverse;
+
     &__form {
       flex-wrap: wrap;
     }
@@ -135,5 +179,21 @@ body {
       max-width: 90vw;
       margin-bottom: 32px;
     }
+
+    &__response {
+      // flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__short_url {
+      margin: 2px 0 10px 0;
+    }
   }
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: -48px;
 }
