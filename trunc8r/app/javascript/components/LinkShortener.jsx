@@ -1,14 +1,6 @@
 import React, { useState } from "react";
-
-function copyString(str) {
-  var input = document.createElement("input");
-  input.value = str;
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand("copy");
-  document.body.removeChild(input);
-  alert(str + " copied to clipboard!");
-}
+import Spinner from "../components/Spinner";
+import Response from "../components/Response";
 
 export default function LinkShortener() {
   const token = document.querySelector("[name=csrf-token]").content;
@@ -55,45 +47,11 @@ export default function LinkShortener() {
         }
       })
       .catch((error) => {
-        // setState({ status: "error", messages: [error] });
+        setState({ status: "error", messages: [error] });
       });
   }
 
-  let response = "";
-
-  if (state.status == "loading")
-    return (
-      <div className="spinner">
-        <img
-          className="sinner__svg"
-          src="/assets/spinner.svg"
-          alt="Spinning arrow loading indicator"
-        ></img>
-      </div>
-    );
-  if (state.status == "error")
-    response = (
-      <p className="link_shortener__response link_shortener__response--error">
-        Error: {state.messages.join(", ")}
-      </p>
-    );
-  if (state.status == "success") {
-    const url = "http://localhost:8080/" + state.slug;
-    response = (
-      <p className="link_shortener__response">
-        <span className="link_shortener__prompt">Here's your short url:</span>
-        <span className="link_shortener__short_url" id="short_url">
-          {url}
-        </span>
-        <button
-          className="link_shortener__copy_button"
-          onClick={() => copyString(url)}
-        >
-          Copy
-        </button>
-      </p>
-    );
-  }
+  if (state.status == "loading") return <Spinner></Spinner>;
 
   return (
     <section className="link_shortener">
@@ -108,7 +66,11 @@ export default function LinkShortener() {
           Shorten!
         </button>
       </form>
-      {response}
+      <Response
+        status={state.status}
+        messages={state.messages}
+        slug={state.slug}
+      ></Response>
     </section>
   );
 }
