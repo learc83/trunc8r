@@ -1,25 +1,18 @@
-<section class="sales_pitch">
+<div class="content">
+  <section class="sales_pitch">
+    <div class="sales_pitch__text">
+      <h1 class="sales_pitch__header">
+        trunc8r makes your links shorter than you ever thought possible.
+      </h1>
 
-  <div class="sales_pitch__text">
-    <h1 class="sales_pitch__header">
-      trunc8r makes your links shorter than you ever thought possible.
-    </h1>
+      <p class="sales_pitch__body">
+        You do want your links shorter right? If you don't, then why are you here?
+        We don't really do anything else. Seriously. That's it. That's all we do.
+      <p>
+    </div>
+    <%= image_tag("people", alt: "trunc8r axe logo", class: "sales_pitch__image", width: 100)%>
+  </section>
 
-    <p class="sales_pitch__body">
-      You do want your links shorter right? If you don't, then why are you here?
-      We don't really do anything else. Seriously. That's it. That's all we do.
-    <p>
-  </div>
-  <%= image_tag("people", alt: "trunc8r axe logo", class: "sales_pitch__image")%>
-  
-</section>
-
-<section class="interaction">
-    <input type="text" placeholder="http://google.com" class="interaction__input">
-    <button type="button" class="interaction__button">Shorten!</button>
-</section>
-
-<div id="react-app"></div>
-<%= javascript_pack_tag 'index' %>
-
-<%# <a href='https://www.freepik.com/vectors/abstract'>Abstract vector created by pch.vector - www.freepik.com</a> %>
+  <div id="react-app" class="react-app"></div>
+  <%= javascript_pack_tag 'index' %>
+</div>
