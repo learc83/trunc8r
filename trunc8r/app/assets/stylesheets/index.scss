@@ -1,0 +1,82 @@
+body {
+  background: linear-gradient(135deg, #0079bf, #5067c5);
+  color: #ffffff;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.header {
+  &__image {
+    height: 120px;
+  }
+}
+
+.sales_pitch {
+  padding-top: 16px;
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  &__text {
+    flex: 1 1 40%;
+  }
+
+  &__header {
+    font-size: 250%;
+    margin-bottom: 8px;
+  }
+
+  &__body {
+    margin-top: 0;
+    font-size: 140%;
+    line-height: 1.4;
+  }
+
+  &__image {
+    flex: 0 1 50%;
+    // width: 500px;
+  }
+}
+
+.interaction {
+  width: 60%;
+  margin: auto;
+  display: flex;
+
+  &__input {
+    flex: 2 1 50%;
+    font-size: 180%;
+    border: 0;
+    padding-left: 12px;
+    border-radius: 4px;
+    margin-right: 12px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  &__input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  &__button {
+    flex: 1 1 5%;
+    border: none;
+    padding: 12px;
+    margin: 0;
+    font-size: 150%;
+    background-color: rgb(75, 158, 59);
+    background-color: #46dbc9;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__button:focus,
+  &__button:active,
+  &__input:focus,
+  &__input:active {
+    outline: none;
+    box-shadow: none;
+  }
+}
