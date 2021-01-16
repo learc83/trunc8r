@@ -15,6 +15,7 @@ services:
     container_name: ruby_container
     ports:
       - "3000:3000"
+      - "3035:3035"
     volumes:
       - .:/home/app
       - bundler_gems:/usr/local/bundle/ # save so we don't have to keep running bundle install in development
