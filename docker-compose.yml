@@ -14,7 +14,7 @@ services:
     build: .
     container_name: ruby_container
     ports:
-      - "3000:3000"
+      - "8080:3000"
       - "3035:3035"
     volumes:
       - .:/home/app
