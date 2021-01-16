@@ -78,8 +78,13 @@ body {
   flex: 1 1 100px;
   display: flex;
 
+  &__form {
+    flex: 1 1 100%;
+    display: flex;
+  }
+
   &__input {
-    flex: 2 1 100px;
+    flex: 5 1 100px;
     font-size: 180%;
     border: 0;
     padding-left: 12px;
@@ -116,8 +121,10 @@ body {
   }
 
   @media (max-width: 480px) {
-    // flex-direction: column;
-    flex-wrap: wrap;
+    &__form {
+      flex-wrap: wrap;
+    }
+
     &__input {
       margin-right: 0;
       margin-bottom: 16px;
