@@ -1,7 +1,5 @@
 class LinksController < ApplicationController
   def create
-    # sleep 0.3
-
     link = Link.new(url: params[:link][:url])
 
     if link.save

@@ -27,6 +27,7 @@ export default function LinkShortener() {
   function shortenLink(e) {
     e.preventDefault();
     setState({ status: "loading" });
+    const spinStart = setTimeout(() => setState({ status: "spinning" }), 100);
 
     const params = { link: { url: state.long_link } };
 
@@ -40,6 +41,7 @@ export default function LinkShortener() {
     })
       .then((response) => response.json())
       .then((data) => {
+        clearTimeout(spinStart);
         if (data.errors) {
           setState({ status: "error", messages: data.errors });
         } else {
@@ -47,11 +49,12 @@ export default function LinkShortener() {
         }
       })
       .catch((error) => {
+        clearTimeout(spinStart);
         setState({ status: "error", messages: [error] });
       });
   }
 
-  if (state.status == "loading") return <Spinner></Spinner>;
+  if (state.status == "spinning") return <Spinner></Spinner>;
 
   return (
     <section className="link_shortener">
@@ -62,7 +65,11 @@ export default function LinkShortener() {
           className="link_shortener__input"
           onChange={handleInput}
         />
-        <button type="submit" className="link_shortener__button">
+        <button
+          type="submit"
+          className="link_shortener__button"
+          disabled={state.status == "loading"}
+        >
           Shorten!
         </button>
       </form>
