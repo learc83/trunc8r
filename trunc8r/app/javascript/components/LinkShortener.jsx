@@ -3,7 +3,7 @@ import Spinner from "../components/Spinner";
 import Response from "../components/Response";
 
 export default function LinkShortener() {
-  const token = document.querySelector("[name=csrf-token]").content;
+  const token = document.querySelector("[name=csrf-token]")?.content;
   const [state, setState] = useState({ status: "ready", long_link: "" });
 
   function handleInput(e) {

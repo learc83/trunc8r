@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'benchmark'
 
 RSpec.describe 'Redirects', type: :request do
   describe 'Visiting /:slug' do
@@ -17,6 +18,18 @@ RSpec.describe 'Redirects', type: :request do
 
       get '/link'
       expect(response).to redirect_to(link.url)
+    end
+
+    it 'can handle at least 10 redirects per second' do
+      link = Link.create(url: 'https://google.com')
+
+      elapsed = Benchmark.realtime do
+        10.times do
+          get "/#{link.slug}"
+          expect(response).to redirect_to(link.url)
+        end
+      end
+      expect(elapsed).to be < 1.seconds
     end
   end
 end

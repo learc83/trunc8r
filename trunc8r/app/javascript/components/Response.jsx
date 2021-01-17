@@ -1,5 +1,7 @@
 import React from "react";
 
+const rootUrl = document.querySelector("[name=root-url]")?.content;
+
 function copyString(str) {
   var input = document.createElement("input");
   input.value = str;
@@ -19,7 +21,7 @@ export default function Response({ status, messages, slug }) {
       </p>
     );
   } else if (status == "success") {
-    const url = "http://localhost:8080/" + slug;
+    const url = rootUrl + "/" + slug;
     return (
       <p className="link_shortener__response">
         <span className="link_shortener__prompt">Here's your short url:</span>

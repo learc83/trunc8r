@@ -15,10 +15,21 @@ services:
     container_name: ruby_container
     ports:
       - "8080:3000"
+      - "3001:3001"
       - "3035:3035"
     volumes:
       - .:/home/app
       - bundler_gems:/usr/local/bundle/ # save so we don't have to keep running bundle install in development
+    environment:
+      - "SELENIUM_HOST_URL=http://chrome:4444/wd/hub"
+      - "TEST_APP_HOST=ruby_dev"
+      - "TEST_APP_PORT=3001"
+      - "ROOT_URL=http://ruby_dev:3001"
+  chrome:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - "4444:4444"
+      - "5900:5900"
 
 volumes:
   bundler_gems:
