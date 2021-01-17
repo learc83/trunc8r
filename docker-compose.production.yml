@@ -8,19 +8,15 @@ services:
     environment:
       POSTGRES_USER: rails
       POSTGRES_PASSWORD: rails
-    build:
-      context: ../
   ruby_production:
     build:
-      context: ../
-      dockerfile: production/Dockerfile
+      context: .
+      dockerfile: Dockerfile.production
     container_name: ruby_container_production
     ports:
       - "8080:3000"
       - "3001:3001"
       - "3035:3035"
-    # volumes:
-    # - ../:/home/app
     environment:
       - "RAILS_ENV=production"
       - "ROOT_URL=http://localhost:8080"

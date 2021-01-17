@@ -14,7 +14,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 # RUN gem install rails
 RUN apt-get update -qq && apt-get install -y nodejs yarn
 
-ADD production/start.sh /
+ADD start.production.sh /start.sh
 RUN chmod +x /start.sh
 
 # COPY trunc8r /home/app/trunc8r
