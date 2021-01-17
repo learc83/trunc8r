@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:12.5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: rails
+      POSTGRES_PASSWORD: rails
+  ruby_test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: ruby_container_test
+    ports:
+      - "8080:3000"
+      - "3001:3001"
+      - "3035:3035"
+    environment:
+      - "SELENIUM_HOST_URL=http://chrome:4444/wd/hub"
+      - "TEST_APP_HOST=ruby_test"
+      - "TEST_APP_PORT=3001"
+      - "ROOT_URL=http://ruby_test:3001"
+      - "RAILS_SERVE_STATIC_FILES=true"
+  chrome:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+    environment:
+      - "JAVA_OPTS=-Dselenium.LOGGER.level=OFF"

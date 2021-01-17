@@ -9,3 +9,5 @@ sudo docker-compose run --rm --service-ports ruby_dev
 sudo docker container ls
 
 docker exec -it <CONTAINER ID> bash
+
+sudo docker-compose -f docker-compose.production.yml -p production up --build --force-recreate
