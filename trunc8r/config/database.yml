@@ -87,5 +87,6 @@ test:
 production:
   <<: *default
   database: trunc8r_production
-  username: trunc8r
-  password: <%= ENV['TRUNC8R_DATABASE_PASSWORD'] %>
+  # username: trunc8r
+  # password: <%= ENV['TRUNC8R_DATABASE_PASSWORD'] %>
+  url: postgresql://rails:rails@postgres:5432/trunc8r_production

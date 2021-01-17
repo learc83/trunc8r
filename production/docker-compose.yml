@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:12.5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: rails
+      POSTGRES_PASSWORD: rails
+    build:
+      context: ../
+  ruby_production:
+    build:
+      context: ../
+      dockerfile: production/Dockerfile
+    container_name: ruby_container_production
+    ports:
+      - "8080:3000"
+      - "3001:3001"
+      - "3035:3035"
+    # volumes:
+    # - ../:/home/app
+    environment:
+      - "RAILS_ENV=production"
+      - "ROOT_URL=http://localhost:8080"
+      - "RAILS_SERVE_STATIC_FILES=true"
