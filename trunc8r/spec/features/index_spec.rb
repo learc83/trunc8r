@@ -23,6 +23,16 @@ feature 'Index' do
     expect(first('.link_shortener__response')).to have_content('Url must be a valid url')
   end
 
+  scenario 'Clicking shorten with an invalid url 2+ times does not show a blank url error', js: true do
+    visit root_path
+    first('.link_shortener__input').set('httpz://google.com')
+    first('.link_shortener__button').click
+    first('.link_shortener__button').click
+    first('.link_shortener__button').click
+
+    expect(first('.link_shortener__response')).not_to have_content("Url can't be blank")
+  end
+
   scenario 'Entering text that does not partially match http(s) shows an error', js: true do
     visit root_path
     first('.link_shortener__input').set('a')
@@ -43,17 +53,17 @@ feature 'Index' do
     expect(first('.link_shortener__response')).to have_content("Here's your short url:")
   end
 
-  scenario 'Visiting a short url redirects you to the long url', js: true do
-    long_url = 'http://example.com'
-    visit root_path
+  # scenario 'Visiting a short url redirects you to the long url', js: true do
+  #   long_url = 'http://example.com'
+  #   visit root_path
 
-    first('.link_shortener__input').set(long_url)
-    first('.link_shortener__button').click
+  #   first('.link_shortener__input').set(long_url)
+  #   first('.link_shortener__button').click
 
-    short_url = find('#short_url')['innerHTML']
+  #   short_url = find('#short_url')['innerHTML']
 
-    visit short_url
+  #   visit short_url
 
-    expect(page.current_url).to eq(long_url + '/')
-  end
+  #   expect(page.current_url).to eq(long_url + '/')
+  # end
 end

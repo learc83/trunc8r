@@ -30,7 +30,9 @@ Steps to run the development environment:
 The dev environment isn't necessary unless you want to actually do development work, the production and testing environment
 are all that are necessary for interacting with the finished product, but instructions are provided if you want to use it.
 The dev environment uses volumes to persist the db and to cache ruby gems to make it quicker to load. Because of this,
-you must manually install the gems, create the database, and run yarn install.
+you must manually install the gems, create the database, and run yarn install. (You have to change the root url in the 
+development docker compose file to match the root url in the test docker comose file if you want to run the full integrations 
+tests in development)
 
 1. cd into the directory
 2. Manually install gems and run yarn install

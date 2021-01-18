@@ -24,6 +24,10 @@ export default function LinkShortener() {
     }
   }
 
+  function handleSubmit(e) {
+    setState({ status: "loading", long_link: state.long_link }, shortenLink(e));
+  }
+
   function shortenLink(e) {
     e.preventDefault();
     setState({ status: "loading", long_link: state.long_link });
@@ -74,7 +78,7 @@ export default function LinkShortener() {
 
   return (
     <section className="link_shortener">
-      <form onSubmit={shortenLink} className="link_shortener__form">
+      <form onSubmit={handleSubmit} className="link_shortener__form">
         <input
           type="text"
           placeholder="http://yourlongurl.com"
