@@ -24,6 +24,17 @@ RSpec.describe Link, type: :model do
       link = Link.new(url: 'https://google.com')
       expect(link.valid?).to be true
     end
+
+    it 'must not be only http:// or https://' do
+      error_message = ['must be a valid url ( must start with http(s):// )']
+      link = Link.new(url: 'http://')
+      expect(link.valid?).to be false
+      expect(link.errors.messages[:url]).to eq error_message
+
+      link = Link.new(url: 'https://')
+      expect(link.valid?).to be false
+      expect(link.errors.messages[:url]).to eq error_message
+    end
   end
 
   describe '.slug' do

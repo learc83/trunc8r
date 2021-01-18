@@ -18,6 +18,7 @@ This will bring up a postgres container, and a rails container with a puma serve
 will be recreated each time you run this command.
 
 Steps to run test suite:
+
 1. cd into the directory
 2. (sudo) docker-compose -f docker-compose.test.yml -p test up
 
@@ -25,6 +26,7 @@ This will bring up a postgres container, a rails container, and a selenium/chrom
 20 rspec tests and print out the results.
 
 Steps to run the development environment:
+
 The dev environment isn't necessary unless you want to actually do development work, the production and testing environment
 are all that are necessary for interacting with the finished product, but instructions are provided if you want to use it.
 The dev environment uses volumes to persist the db and to cache ruby gems to make it quicker to load. Because of this,

@@ -56,18 +56,4 @@ feature 'Index' do
 
     expect(page.current_url).to eq(long_url + '/')
   end
-
-  scenario 'Can handle at least 5 requests for short urls per second', js: true do
-    long_url = 'http://example.com'
-
-    elapsed = Benchmark.realtime do
-      5.times do
-        visit root_path
-        first('.link_shortener__input').set(long_url)
-        first('.link_shortener__button').click
-        find('#short_url')['innerHTML']
-      end
-    end
-    expect(elapsed).to be < 1.seconds
-  end
 end
