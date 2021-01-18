@@ -2,5 +2,5 @@
 
 cd /home/app/trunc8r
 rm -f tmp/pids/server.pid
-/bin/webpacker-dev
+bin/webpack-dev-server &
 rails server -b 0.0.0.0 

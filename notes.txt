@@ -1,17 +1,52 @@
-sudo docker-compose build
-sudo docker-compose build <service_name>
-sudo docker-compose up
-sudo docker-compose up -d <service_name> # detached--in the background
+This application was created using Rails 6.1, Ruby 2.7.1 and postgresql 12.5. It has been packaged using docker and 
+docker compose for ease of use.
 
-sudo docker-compose run --rm --service-ports ruby_dev
+Requirements: Docker, and Docker Compose (Tested using Docker 20.10.1 build 831ebea and docker-compose version 1.27.4, 
+build 40524192 on Ubuntu 20.04 running on Windows WSL2. As well as Docker 20.10.2, and docker-compose 1.27.4 on macOS 10.13.6)
 
+For ease of setup the master.key file has been checked into git and the postgres passwords have been as well. In a real
+production app I would use environment variables in the production environment, so that sensitive information was never
+checked into version control.
 
-sudo docker container ls
+Steps to run:
 
-docker exec -it <CONTAINER ID> bash
+1. Clone the git repository
+2. cd into the directory
+3. (sudo) docker-compose -f docker-compose.production.yml -p production up
 
-sudo docker-compose -f docker-compose.production.yml -p production up --build --force-recreate
+This will bring up a postgres container, and a rails container with a puma server listening on localhost:8080. The database
+will be recreated each time you run this command.
 
-sudo docker system prune -a
+Steps to run test suite:
+1. cd into the directory
+2. (sudo) docker-compose -f docker-compose.test.yml -p test up
 
-sudo docker volume rm $(sudo docker volume ls -q)
+This will bring up a postgres container, a rails container, and a selenium/chrome container. Then it will run a little under
+20 rspec tests and print out the results.
+
+Steps to run the development environment:
+The dev environment isn't necessary unless you want to actually do development work, the production and testing environment
+are all that are necessary for interacting with the finished product, but instructions are provided if you want to use it.
+The dev environment uses volumes to persist the db and to cache ruby gems to make it quicker to load. Because of this,
+you must manually install the gems, create the database, and run yarn install.
+
+1. cd into the directory
+2. Manually install gems
+  a. (sudo) docker-compose run ruby_dev bash
+  b. cd trunc8r 
+  c. bundle install
+  d. exit
+3. Run yarn install
+  a. (sudo) docker-compose run ruby_dev bash
+  b. cd trunc8r 
+  c. yarn install
+  d. exit
+4. (sudo) docker-compose up
+5. Manually create db
+  a. In a new tab (while docker-compose up from the previous step is still running) run: (sudo) docker-compose run ruby_dev bash
+  b. cd trunc8r
+  c. rake db:create db:migrate
+  d. exit
+
+A development server is now running on localhost:8080, and a webpack-dev-server is running as well
+ 
