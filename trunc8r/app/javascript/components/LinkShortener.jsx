@@ -26,8 +26,12 @@ export default function LinkShortener() {
 
   function shortenLink(e) {
     e.preventDefault();
-    setState({ status: "loading" });
-    const spinStart = setTimeout(() => setState({ status: "spinning" }), 100);
+    setState({ status: "loading", long_link: state.long_link });
+    // Don't show the spinner if the request takes less than 100 ms because it flashes and looks bad
+    const spinStart = setTimeout(
+      () => setState({ status: "spinning", long_link: state.long_link }),
+      100
+    );
 
     const params = { link: { url: state.long_link } };
 
@@ -43,14 +47,26 @@ export default function LinkShortener() {
       .then((data) => {
         clearTimeout(spinStart);
         if (data.errors) {
-          setState({ status: "error", messages: data.errors });
+          setState({
+            status: "error",
+            messages: data.errors,
+            long_link: state.long_link,
+          });
         } else {
-          setState({ status: "success", slug: data.slug });
+          setState({
+            status: "success",
+            slug: data.slug,
+            long_link: state.long_link,
+          });
         }
       })
       .catch((error) => {
         clearTimeout(spinStart);
-        setState({ status: "error", messages: [error] });
+        setState({
+          status: "error",
+          messages: [error],
+          long_link: state.long_link,
+        });
       });
   }
 

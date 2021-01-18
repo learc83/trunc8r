@@ -14,7 +14,6 @@ function copyString(str) {
 
 export default function Response({ status, messages, slug }) {
   if (status === "error") {
-    console.log("akjlads;lkadslkj");
     return (
       <p className="link_shortener__response link_shortener__response--error">
         Error: {messages.join(", ")}
