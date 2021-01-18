@@ -1,2 +1,2 @@
 # trunc8r
-A Ruby on Rails URL shortener
+A Ruby on Rails and React URL shortener
