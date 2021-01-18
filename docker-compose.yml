@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: rails
   ruby_dev:
     build: .
-    container_name: ruby_container
+    container_name: ruby_container_dev
     ports:
       - "8080:3000"
       - "3001:3001"
@@ -24,7 +24,7 @@ services:
       - "SELENIUM_HOST_URL=http://chrome:4444/wd/hub"
       - "TEST_APP_HOST=ruby_dev"
       - "TEST_APP_PORT=3001"
-      - "ROOT_URL=http://ruby_dev:3001"
+      - "ROOT_URL=http://localhost:8080"
   chrome:
     image: selenium/standalone-chrome-debug
     ports:

@@ -54,7 +54,7 @@ export default function LinkShortener() {
       });
   }
 
-  if (state.status == "spinning") return <Spinner></Spinner>;
+  if (state.status === "spinning") return <Spinner></Spinner>;
 
   return (
     <section className="link_shortener">

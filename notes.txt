@@ -11,3 +11,7 @@ sudo docker container ls
 docker exec -it <CONTAINER ID> bash
 
 sudo docker-compose -f docker-compose.production.yml -p production up --build --force-recreate
+
+sudo docker system prune -a
+
+sudo docker volume rm $(sudo docker volume ls -q)
